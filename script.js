@@ -71,11 +71,11 @@
     },
     hpc: {
       kicker: "Parallel simulation at scale",
-      caption: "Decomposing large models into concurrent tasks, message passing, and global reduction."
+      caption: "Using parallel computing to process, explore, and interact efficiently with large-scale scientific data."
     },
     ml: {
       kicker: "Neural representation learning",
-      caption: "Propagating structured observations through learned connections to reveal compact, predictive features."
+      caption: "Optimizing neural networks for stronger task-specific performance under practical computational constraints."
     }
   };
   let focusSwitchTimer;
