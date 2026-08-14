@@ -758,16 +758,30 @@ h1 em,
 .network-node:nth-child(3n + 2) { animation-delay: -1s; }
 .network-node:nth-child(3n) { animation-delay: -2s; }
 
-.nn-layer-links {
-  stroke: color-mix(in srgb, var(--focus-color) 56%, var(--paper));
-  stroke-width: 0.95;
-  opacity: 0.68;
+.brain-contour {
+  stroke: color-mix(in srgb, var(--focus-color) 68%, var(--paper));
+  stroke-width: 1.25;
+  stroke-dasharray: 4 5;
+  opacity: 0.7;
 }
 
-.nn-primary-links {
-  stroke: color-mix(in srgb, var(--focus-color) 86%, white);
-  stroke-width: 1.5;
-  opacity: 0.9;
+.brain-fissure,
+.brain-fold {
+  stroke: color-mix(in srgb, var(--focus-color) 44%, var(--paper));
+  stroke-width: 0.8;
+  stroke-dasharray: 2 5;
+}
+
+.brain-network-links {
+  stroke: color-mix(in srgb, var(--focus-color) 66%, var(--paper));
+  stroke-width: 0.85;
+  opacity: 0.76;
+}
+
+.hemisphere-bridge {
+  stroke: color-mix(in srgb, var(--focus-color) 88%, white);
+  stroke-width: 1.35;
+  stroke-dasharray: 3 3;
 }
 
 .ml-output-route {
@@ -785,9 +799,15 @@ h1 em,
   stroke-width: 2.3;
 }
 
-.nose-node,
-.lip-node {
-  fill: color-mix(in srgb, var(--focus-color) 28%, var(--paper));
+.brain-node {
+  fill: color-mix(in srgb, var(--focus-color) 38%, var(--paper));
+  stroke-width: 1.6;
+}
+
+.readout-node {
+  fill: color-mix(in srgb, var(--focus-color) 74%, var(--paper));
+  stroke: var(--paper);
+  stroke-width: 2.2;
 }
 
 .mouth-node {
@@ -809,13 +829,19 @@ h1 em,
   stroke-linejoin: round;
 }
 
-.feature-label {
-  letter-spacing: 0.12em;
+.neural-field-label {
+  text-anchor: middle;
+  letter-spacing: 0.14em;
 }
 
-.layer-label {
+.sensory-label,
+.vision-label {
   font-size: 7px;
   opacity: 0.82;
+}
+
+.vision-label {
+  text-anchor: middle;
 }
 
 .output-label {

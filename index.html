@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260814-6">
+  <link rel="stylesheet" href="styles.css?v=20260814-7">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -135,40 +135,43 @@
                   <path d="M0 0 10 5 0 10Z"/>
                 </marker>
               </defs>
+              <g class="brain-contour">
+                <path d="M265 126C245 113 220 119 208 136C188 135 173 152 178 171C161 181 166 205 184 214C184 234 206 245 224 235C236 246 253 242 265 230C277 242 294 246 306 235C324 245 346 234 346 214C364 205 369 181 352 171C357 152 342 135 322 136C310 119 285 113 265 126Z"/>
+                <path class="brain-fissure" d="M265 127C252 145 277 157 263 176C250 194 276 210 265 230"/>
+                <path class="brain-fold" d="M211 142C231 147 217 163 198 161M184 181C209 170 217 192 199 205M229 128C242 141 235 157 222 168M224 205C239 190 252 202 247 220M319 142C299 147 313 163 332 161M346 181C321 170 313 192 331 205M301 128C288 141 295 157 308 168M306 205C291 190 278 202 283 220"/>
+              </g>
               <g class="ml-input-routes">
-                <path d="M104 270H145" marker-end="url(#ml-arrow)"/>
-                <path d="M426 260H386" marker-end="url(#ml-arrow)"/>
+                <path d="M145 270Q164 216 200 180" marker-end="url(#ml-arrow)"/>
+                <path d="M386 260Q365 211 330 180" marker-end="url(#ml-arrow)"/>
+                <path d="M220 252 215 214" marker-end="url(#ml-arrow)"/>
+                <path d="M316 249 315 214" marker-end="url(#ml-arrow)"/>
               </g>
-              <g class="network-edges nn-layer-links">
-                <path d="M145 270 220 252M145 270 316 249M386 260 220 252M386 260 316 249"/>
-                <path d="M220 252 248 298M220 252 281 298M316 249 248 298M316 249 281 298"/>
-                <path d="M248 298 230 326M248 298 265 327M248 298 296 326M281 298 230 326M281 298 265 327M281 298 296 326"/>
-                <path d="M230 326 265 396M265 327 265 396M296 326 265 396"/>
+              <g class="network-edges brain-network-links">
+                <path d="M230 150 200 180M230 150 235 180M230 150 265 175M265 142 235 180M265 142 265 175M265 142 295 180M300 150 265 175M300 150 295 180M300 150 330 180"/>
+                <path d="M200 180 215 214M200 180 250 218M235 180 215 214M235 180 250 218M235 180 280 218M265 175 250 218M265 175 280 218M295 180 250 218M295 180 280 218M295 180 315 214M330 180 280 218M330 180 315 214"/>
+                <path class="hemisphere-bridge" d="M230 150 300 150M235 180 295 180M250 218 280 218"/>
               </g>
-              <g class="nn-primary-links">
-                <path d="M145 270 220 252 248 298 230 326 265 396"/>
-                <path d="M386 260 316 249 281 298 296 326 265 396"/>
-                <path class="ml-output-route" d="M265 327V396" marker-end="url(#ml-arrow)"/>
-              </g>
+              <path class="ml-output-route" d="M215 214 265 230M250 218 265 230M280 218 265 230M315 214 265 230M265 230V327 394" marker-end="url(#ml-arrow)"/>
               <g class="network-nodes">
                 <circle class="network-node ear-node" cx="145" cy="270" r="7"/><circle class="network-node ear-node" cx="386" cy="260" r="7"/>
                 <circle class="network-node eye-node" cx="220" cy="252" r="7"/><circle class="network-node eye-node" cx="316" cy="249" r="7"/>
-                <circle class="network-node nose-node" cx="248" cy="298" r="5.5"/><circle class="network-node nose-node" cx="281" cy="298" r="5.5"/>
-                <circle class="network-node lip-node" cx="230" cy="326" r="5.5"/><circle class="network-node mouth-node" cx="265" cy="327" r="7"/><circle class="network-node lip-node" cx="296" cy="326" r="5.5"/>
+                <circle class="network-node brain-node" cx="230" cy="150" r="5.5"/><circle class="network-node brain-node" cx="265" cy="142" r="5.5"/><circle class="network-node brain-node" cx="300" cy="150" r="5.5"/>
+                <circle class="network-node brain-node" cx="200" cy="180" r="5.5"/><circle class="network-node brain-node" cx="235" cy="180" r="5.5"/><circle class="network-node brain-node" cx="265" cy="175" r="6"/><circle class="network-node brain-node" cx="295" cy="180" r="5.5"/><circle class="network-node brain-node" cx="330" cy="180" r="5.5"/>
+                <circle class="network-node brain-node" cx="215" cy="214" r="5.5"/><circle class="network-node brain-node" cx="250" cy="218" r="5.5"/><circle class="network-node brain-node" cx="280" cy="218" r="5.5"/><circle class="network-node brain-node" cx="315" cy="214" r="5.5"/>
+                <circle class="network-node readout-node" cx="265" cy="230" r="7"/>
+                <circle class="network-node mouth-node" cx="265" cy="327" r="7"/>
                 <circle class="network-node output-node" cx="265" cy="394" r="7"/>
               </g>
               <g class="network-signals">
-                <circle class="network-signal" r="4"><animateMotion dur="3.2s" repeatCount="indefinite" path="M104 270H145L220 252 248 298 230 326 265 396"/></circle>
-                <circle class="network-signal" r="4"><animateMotion dur="3.2s" begin="-1.6s" repeatCount="indefinite" path="M426 260H386L316 249 281 298 296 326 265 396"/></circle>
-                <circle class="network-signal secondary-signal" r="3"><animateMotion dur="3.6s" begin="-0.8s" repeatCount="indefinite" path="M145 270 316 249 248 298 265 327 265 396"/></circle>
-                <circle class="network-signal secondary-signal" r="3"><animateMotion dur="3.8s" begin="-2.4s" repeatCount="indefinite" path="M386 260 220 252 281 298 265 327 265 396"/></circle>
+                <circle class="network-signal" r="4"><animateMotion dur="4.2s" repeatCount="indefinite" path="M145 270Q164 216 200 180L230 150 265 175 280 218 265 230V327 394"/></circle>
+                <circle class="network-signal" r="4"><animateMotion dur="4.2s" begin="-2.1s" repeatCount="indefinite" path="M386 260Q365 211 330 180L300 150 265 175 250 218 265 230V327 394"/></circle>
+                <circle class="network-signal secondary-signal" r="3"><animateMotion dur="3.8s" begin="-0.9s" repeatCount="indefinite" path="M220 252 215 214 235 180 265 142 295 180 280 218 265 230V327 394"/></circle>
+                <circle class="network-signal secondary-signal" r="3"><animateMotion dur="3.8s" begin="-2.8s" repeatCount="indefinite" path="M316 249 315 214 295 180 265 142 235 180 250 218 265 230V327 394"/></circle>
               </g>
-              <text class="diagram-label ml-diagram-label" x="77" y="252">INPUT</text>
-              <text class="diagram-label ml-diagram-label" x="403" y="242">INPUT</text>
-              <text class="diagram-label ml-diagram-label feature-label" x="208" y="211">LANDMARK NN</text>
-              <text class="diagram-label ml-diagram-label layer-label" x="333" y="239">L1</text>
-              <text class="diagram-label ml-diagram-label layer-label" x="291" y="294">L2</text>
-              <text class="diagram-label ml-diagram-label layer-label" x="306" y="326">L3</text>
+              <text class="diagram-label ml-diagram-label neural-field-label" x="265" y="108">NEURAL FIELD</text>
+              <text class="diagram-label ml-diagram-label sensory-label" x="102" y="287">AUDIO IN</text>
+              <text class="diagram-label ml-diagram-label sensory-label" x="397" y="277">AUDIO IN</text>
+              <text class="diagram-label ml-diagram-label vision-label" x="268" y="271">VISION IN</text>
               <text class="diagram-label ml-diagram-label output-label" x="265" y="418">OUTPUT</text>
             </svg>
           </div>
@@ -398,6 +401,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260814-6"></script>
+  <script src="script.js?v=20260814-7"></script>
 </body>
 </html>

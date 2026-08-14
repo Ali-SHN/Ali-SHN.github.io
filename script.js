@@ -74,8 +74,8 @@
       caption: "Decomposing large models into concurrent tasks, message passing, and global reduction."
     },
     ml: {
-      kicker: "Scientific representation learning",
-      caption: "Encoding high-dimensional observations into compact, interpretable latent structure."
+      kicker: "Neural representation learning",
+      caption: "Propagating structured observations through learned connections to reveal compact, predictive features."
     }
   };
   let focusSwitchTimer;
