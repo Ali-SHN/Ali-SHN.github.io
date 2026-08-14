@@ -555,7 +555,34 @@ h1 em,
   border-radius: 58% 42% 54% 46%;
 }
 
+.hero-visual:not([data-focus="md"]) .orbit {
+  animation: none;
+}
+
+.hero-visual[data-focus="hpc"] .orbit span {
+  width: 8px;
+  border-width: 1px;
+  border-radius: 1px;
+  animation: compute-node 2.4s steps(2, end) infinite;
+}
+
+.hero-visual[data-focus="hpc"] .orbit span:nth-child(2) { animation-delay: -0.8s; }
+.hero-visual[data-focus="hpc"] .orbit span:nth-child(3) { animation-delay: -1.6s; }
+
+.hero-visual[data-focus="ml"] .orbit {
+  border-color: color-mix(in srgb, var(--focus-color) 18%, transparent);
+}
+
+.hero-visual[data-focus="ml"] .orbit span {
+  opacity: 0;
+}
+
 @keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes compute-node {
+  0%, 32%, 100% { opacity: 0.28; box-shadow: 0 0 0 1px var(--ink); }
+  33%, 66% { opacity: 1; box-shadow: 0 0 12px var(--focus-color); }
+}
 
 .focus-switcher {
   position: absolute;
@@ -639,7 +666,7 @@ h1 em,
 }
 
 .hero-visual:not([data-focus="md"]) .trajectory {
-  opacity: 0.18;
+  opacity: 0;
 }
 
 .perspective-overlay {
@@ -661,17 +688,37 @@ h1 em,
 
 .overlay-hpc {
   stroke-dasharray: 3 6;
+  animation: compute-flow 2.8s linear infinite;
 }
 
 .overlay-ml circle {
   fill: var(--paper);
   stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: model-activation 3.2s ease-in-out infinite;
 }
+
+.overlay-ml circle:nth-of-type(2) { animation-delay: -0.4s; }
+.overlay-ml circle:nth-of-type(3) { animation-delay: -0.8s; }
+.overlay-ml circle:nth-of-type(4) { animation-delay: -1.2s; }
+.overlay-ml circle:nth-of-type(5) { animation-delay: -1.6s; }
+.overlay-ml circle:nth-of-type(6) { animation-delay: -2s; }
+.overlay-ml circle:nth-of-type(7) { animation-delay: -2.4s; }
 
 .hero-visual[data-focus="hpc"] .overlay-hpc,
 .hero-visual[data-focus="ml"] .overlay-ml {
   opacity: 0.62;
   transform: scale(1);
+}
+
+@keyframes compute-flow {
+  to { stroke-dashoffset: -54; }
+}
+
+@keyframes model-activation {
+  0%, 68%, 100% { transform: scale(0.85); fill: var(--paper); }
+  18%, 42% { transform: scale(1.3); fill: var(--focus-color); }
 }
 
 .focus-caption {

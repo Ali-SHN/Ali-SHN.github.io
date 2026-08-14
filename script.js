@@ -154,11 +154,7 @@
     makeParticles();
   };
 
-  const draw = () => {
-    context.clearRect(0, 0, width, height);
-    const ink = cssColor("--ink");
-    const accent = cssColor("--accent");
-
+  const drawMolecularField = (ink, accent) => {
     particles.forEach((particle, index) => {
       particle.x += particle.vx;
       particle.y += particle.vy;
@@ -193,6 +189,120 @@
         context.stroke();
       }
     });
+  };
+
+  const drawComputeField = (ink, time) => {
+    const color = "#48d6ff";
+    const compact = width < 760;
+    const startX = compact ? width * 0.08 : width * 0.53;
+    const endX = width * 0.97;
+    const startY = compact ? 82 : height * 0.12;
+    const endY = height * 0.9;
+    const gap = compact ? 48 : 58;
+    const columns = Math.max(2, Math.floor((endX - startX) / gap));
+    const rows = Math.max(3, Math.floor((endY - startY) / gap));
+
+    context.strokeStyle = ink;
+    context.lineWidth = 0.65;
+    context.globalAlpha = 0.075;
+    for (let column = 0; column <= columns; column += 1) {
+      const x = startX + column * gap;
+      context.beginPath();
+      context.moveTo(x, startY);
+      context.lineTo(x, startY + rows * gap);
+      context.stroke();
+    }
+    for (let row = 0; row <= rows; row += 1) {
+      const y = startY + row * gap;
+      context.beginPath();
+      context.moveTo(startX, y);
+      context.lineTo(startX + columns * gap, y);
+      context.stroke();
+    }
+
+    for (let row = 0; row <= rows; row += 1) {
+      for (let column = 0; column <= columns; column += 1) {
+        const x = startX + column * gap;
+        const y = startY + row * gap;
+        context.fillStyle = (row + column) % 7 === 0 ? color : ink;
+        context.globalAlpha = (row + column) % 7 === 0 ? 0.45 : 0.16;
+        context.fillRect(x - 2, y - 2, 4, 4);
+      }
+    }
+
+    const progress = (time * 0.00018) % 1;
+    for (let row = 0; row <= rows; row += 2) {
+      const direction = row % 4 === 0 ? progress : 1 - progress;
+      const x = startX + direction * columns * gap;
+      const y = startY + row * gap;
+      context.fillStyle = color;
+      context.globalAlpha = 0.68;
+      context.fillRect(x - 11, y - 2, 22, 4);
+    }
+
+    const scanColumn = Math.floor((time * 0.0012) % (columns + 1));
+    context.fillStyle = color;
+    context.globalAlpha = 0.06;
+    context.fillRect(startX + scanColumn * gap - gap / 2, startY, gap, rows * gap);
+  };
+
+  const drawLearningField = (ink, time) => {
+    const color = "#a982ff";
+    const compact = width < 760;
+    const left = compact ? width * 0.06 : width * 0.55;
+    const right = width * 0.96;
+    const top = compact ? 85 : height * 0.16;
+    const bottom = height * 0.86;
+    const layerCounts = compact ? [3, 5, 4] : [4, 6, 5, 3];
+    const layers = layerCounts.map((count, layerIndex) => {
+      const x = left + (right - left) * (layerIndex / (layerCounts.length - 1));
+      return Array.from({ length: count }, (_, nodeIndex) => ({
+        x,
+        y: top + (bottom - top) * ((nodeIndex + 1) / (count + 1))
+      }));
+    });
+
+    layers.slice(0, -1).forEach((layer, layerIndex) => {
+      const nextLayer = layers[layerIndex + 1];
+      layer.forEach((node, nodeIndex) => {
+        nextLayer.forEach((next, nextIndex) => {
+          const activeBand = Math.floor((time * 0.001 + nodeIndex * 0.7 + nextIndex * 0.3) % layers.length);
+          context.strokeStyle = activeBand === layerIndex ? color : ink;
+          context.globalAlpha = activeBand === layerIndex ? 0.16 : 0.045;
+          context.lineWidth = activeBand === layerIndex ? 0.9 : 0.55;
+          context.beginPath();
+          context.moveTo(node.x, node.y);
+          context.lineTo(next.x, next.y);
+          context.stroke();
+        });
+      });
+    });
+
+    const activeLayer = Math.floor((time * 0.0007) % layers.length);
+    layers.forEach((layer, layerIndex) => {
+      layer.forEach((node, nodeIndex) => {
+        const active = layerIndex === activeLayer && nodeIndex % 2 === activeLayer % 2;
+        context.save();
+        context.translate(node.x, node.y);
+        context.rotate(Math.PI / 4);
+        context.fillStyle = active ? color : ink;
+        context.globalAlpha = active ? 0.72 : 0.22;
+        const size = active ? 7 : 4;
+        context.fillRect(-size / 2, -size / 2, size, size);
+        context.restore();
+      });
+    });
+  };
+
+  const draw = (timestamp = performance.now()) => {
+    context.clearRect(0, 0, width, height);
+    const ink = cssColor("--ink");
+    const accent = cssColor("--accent");
+    const mode = hero?.dataset.focus || "md";
+
+    if (mode === "hpc") drawComputeField(ink, timestamp);
+    else if (mode === "ml") drawLearningField(ink, timestamp);
+    else drawMolecularField(ink, accent);
 
     context.globalAlpha = 1;
     frame = requestAnimationFrame(draw);
