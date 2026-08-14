@@ -66,16 +66,16 @@
   const focusCaption = document.querySelector("[data-focus-caption]");
   const focusContent = {
     md: {
-      kicker: "Molecular dynamics",
-      caption: "Following atoms through time."
+      kicker: "Atomistic simulation",
+      caption: "Resolving molecular structure and motion across interacting time scales."
     },
     hpc: {
-      kicker: "High-performance computing",
-      caption: "Scaling scientific questions across systems."
+      kicker: "Parallel scientific computing",
+      caption: "Partitioning large simulations into concurrent tasks, communication, and reduction."
     },
     ml: {
-      kicker: "Machine learning",
-      caption: "Finding compact structure in complex data."
+      kicker: "Representation learning",
+      caption: "Propagating high-dimensional signals through learned layers to expose compact structure."
     }
   };
   let focusSwitchTimer;
@@ -253,7 +253,7 @@
     const right = width * 0.96;
     const top = compact ? 85 : height * 0.16;
     const bottom = height * 0.86;
-    const layerCounts = compact ? [3, 5, 4] : [4, 6, 5, 3];
+    const layerCounts = compact ? [3, 5, 4, 2] : [4, 6, 7, 5, 2];
     const layers = layerCounts.map((count, layerIndex) => {
       const x = left + (right - left) * (layerIndex / (layerCounts.length - 1));
       return Array.from({ length: count }, (_, nodeIndex) => ({
@@ -262,23 +262,57 @@
       }));
     });
 
+    const edgesByLayer = [];
     layers.slice(0, -1).forEach((layer, layerIndex) => {
       const nextLayer = layers[layerIndex + 1];
+      const layerEdges = [];
       layer.forEach((node, nodeIndex) => {
         nextLayer.forEach((next, nextIndex) => {
-          const activeBand = Math.floor((time * 0.001 + nodeIndex * 0.7 + nextIndex * 0.3) % layers.length);
-          context.strokeStyle = activeBand === layerIndex ? color : ink;
-          context.globalAlpha = activeBand === layerIndex ? 0.16 : 0.045;
-          context.lineWidth = activeBand === layerIndex ? 0.9 : 0.55;
+          const keepEdge = (nodeIndex * 3 + nextIndex * 2 + layerIndex) % 4 !== 0 || nextIndex === nodeIndex % nextLayer.length;
+          if (!keepEdge) return;
+          const edge = { from: node, to: next };
+          layerEdges.push(edge);
+          context.strokeStyle = ink;
+          context.globalAlpha = 0.055;
+          context.lineWidth = 0.55;
           context.beginPath();
           context.moveTo(node.x, node.y);
           context.lineTo(next.x, next.y);
           context.stroke();
         });
       });
+      edgesByLayer.push(layerEdges);
     });
 
-    const activeLayer = Math.floor((time * 0.0007) % layers.length);
+    const signalCount = compact ? 8 : 16;
+    for (let signalIndex = 0; signalIndex < signalCount; signalIndex += 1) {
+      const wave = (time * 0.00055 + signalIndex * 0.37) % edgesByLayer.length;
+      const stage = Math.floor(wave);
+      const progress = wave - stage;
+      const layerEdges = edgesByLayer[stage];
+      const edge = layerEdges[(signalIndex * 7 + stage * 3) % layerEdges.length];
+      const x = edge.from.x + (edge.to.x - edge.from.x) * progress;
+      const y = edge.from.y + (edge.to.y - edge.from.y) * progress;
+      const tailProgress = Math.max(0, progress - 0.08);
+      const tailX = edge.from.x + (edge.to.x - edge.from.x) * tailProgress;
+      const tailY = edge.from.y + (edge.to.y - edge.from.y) * tailProgress;
+
+      context.strokeStyle = color;
+      context.globalAlpha = 0.24;
+      context.lineWidth = 1.2;
+      context.beginPath();
+      context.moveTo(tailX, tailY);
+      context.lineTo(x, y);
+      context.stroke();
+
+      context.fillStyle = color;
+      context.globalAlpha = 0.82;
+      context.beginPath();
+      context.arc(x, y, signalIndex % 3 === 0 ? 2.2 : 1.5, 0, Math.PI * 2);
+      context.fill();
+    }
+
+    const activeLayer = Math.floor((time * 0.00055) % layers.length);
     layers.forEach((layer, layerIndex) => {
       layer.forEach((node, nodeIndex) => {
         const active = layerIndex === activeLayer && nodeIndex % 2 === activeLayer % 2;
@@ -286,8 +320,8 @@
         context.translate(node.x, node.y);
         context.rotate(Math.PI / 4);
         context.fillStyle = active ? color : ink;
-        context.globalAlpha = active ? 0.72 : 0.22;
-        const size = active ? 7 : 4;
+        context.globalAlpha = active ? 0.78 : 0.2;
+        const size = active ? 7 : 4.5;
         context.fillRect(-size / 2, -size / 2, size, size);
         context.restore();
       });

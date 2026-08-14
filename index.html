@@ -101,11 +101,57 @@
               <path d="M50 306C91 121 297 59 434 159c101 74 57 234-58 293-101 52-261 6-297-101-39-115 62-244 183-241 112 3 187 116 149 213-28 73-122 115-190 75-62-36-68-129-19-177 41-40 115-33 144 14"/>
             </svg>
             <svg class="perspective-overlay overlay-hpc" viewBox="0 0 530 530" aria-hidden="true">
-              <path d="m110 170 155-76 155 76-155 77-155-77Zm0 0v178l155 88 155-88V170M265 247v189M110 259l155 82 155-82M187 132l155 77v178M343 132l-155 77v178"/>
+              <g class="compute-routes">
+                <path d="M104 242H145V88H185M104 258H160V88H285M104 276H145V441H185M104 292H160V441H285"/>
+                <path d="M255 88H400V250H435M355 88H412V262H435M255 441H400V280H435M355 441H412V292H435"/>
+              </g>
+              <g class="workload-block">
+                <rect x="43" y="218" width="61" height="92" rx="3"/>
+                <path d="M43 241h61M43 264h61M43 287h61M63 218v92M84 218v92"/>
+              </g>
+              <g class="compute-tiles">
+                <g transform="translate(185 65)"><rect width="70" height="46" rx="4"/><path d="M13 11h17v9H13zM40 11h17v9H40zM13 27h17v9H13zM40 27h17v9H40z"/></g>
+                <g transform="translate(285 65)"><rect width="70" height="46" rx="4"/><path d="M13 11h17v9H13zM40 11h17v9H40zM13 27h17v9H13zM40 27h17v9H40z"/></g>
+                <g transform="translate(185 418)"><rect width="70" height="46" rx="4"/><path d="M13 11h17v9H13zM40 11h17v9H40zM13 27h17v9H13zM40 27h17v9H40z"/></g>
+                <g transform="translate(285 418)"><rect width="70" height="46" rx="4"/><path d="M13 11h17v9H13zM40 11h17v9H40zM13 27h17v9H13zM40 27h17v9H40z"/></g>
+              </g>
+              <g class="reduction-block">
+                <rect x="435" y="232" width="54" height="68" rx="4"/>
+                <path d="m447 253 8 8 21-18M447 278h30"/>
+              </g>
+              <g class="task-packets">
+                <rect class="task-packet" x="-6" y="-3" width="12" height="6" rx="1"><animateMotion dur="2.8s" repeatCount="indefinite" path="M104 242H145V88H185"/></rect>
+                <rect class="task-packet" x="-6" y="-3" width="12" height="6" rx="1"><animateMotion dur="3.1s" begin="-1.4s" repeatCount="indefinite" path="M104 292H160V441H285"/></rect>
+                <rect class="task-packet" x="-6" y="-3" width="12" height="6" rx="1"><animateMotion dur="2.6s" begin="-0.7s" repeatCount="indefinite" path="M255 88H400V250H435"/></rect>
+                <rect class="task-packet" x="-6" y="-3" width="12" height="6" rx="1"><animateMotion dur="3s" begin="-2.1s" repeatCount="indefinite" path="M355 441H412V292H435"/></rect>
+              </g>
+              <text class="diagram-label" x="42" y="207">DOMAIN</text>
+              <text class="diagram-label" x="205" y="53">PARALLEL NODES</text>
+              <text class="diagram-label" x="437" y="220">REDUCE</text>
             </svg>
             <svg class="perspective-overlay overlay-ml" viewBox="0 0 530 530" aria-hidden="true">
-              <path d="m104 178 101 62m0 0 98-121m-98 121 31 140m67-261 112 98m-179 163 179-163M104 178l45 218m266-179-29 178m-237 1 87-16m0 0 150 15M303 119l83 276"/>
-              <circle cx="104" cy="178" r="9"/><circle cx="205" cy="240" r="12"/><circle cx="303" cy="119" r="8"/><circle cx="415" cy="217" r="11"/><circle cx="149" cy="396" r="8"/><circle cx="236" cy="380" r="11"/><circle cx="386" cy="395" r="9"/>
+              <g class="network-edges">
+                <path d="M70 180 180 145M70 180 180 220M70 265 180 145M70 265 180 220M70 265 180 305M70 265 180 385M70 350 180 305M70 350 180 385"/>
+                <path d="M180 145 310 150M180 145 310 235M180 220 310 150M180 220 310 320M180 305 310 235M180 305 310 320M180 305 310 380M180 385 310 320M180 385 310 380"/>
+                <path d="M310 150 440 210M310 235 440 210M310 235 440 320M310 320 440 210M310 320 440 320M310 380 440 320"/>
+              </g>
+              <g class="network-nodes">
+                <circle class="network-node" cx="70" cy="180" r="7"/><circle class="network-node" cx="70" cy="265" r="7"/><circle class="network-node" cx="70" cy="350" r="7"/>
+                <circle class="network-node" cx="180" cy="145" r="7"/><circle class="network-node" cx="180" cy="220" r="7"/><circle class="network-node" cx="180" cy="305" r="7"/><circle class="network-node" cx="180" cy="385" r="7"/>
+                <circle class="network-node" cx="310" cy="150" r="7"/><circle class="network-node" cx="310" cy="235" r="7"/><circle class="network-node" cx="310" cy="320" r="7"/><circle class="network-node" cx="310" cy="380" r="7"/>
+                <circle class="network-node" cx="440" cy="210" r="8"/><circle class="network-node" cx="440" cy="320" r="8"/>
+              </g>
+              <g class="network-signals">
+                <circle class="network-signal" r="4"><animateMotion dur="2.8s" repeatCount="indefinite" path="M70 180 180 145 310 235 440 210"/></circle>
+                <circle class="network-signal" r="3"><animateMotion dur="3.2s" begin="-0.8s" repeatCount="indefinite" path="M70 265 180 220 310 150 440 210"/></circle>
+                <circle class="network-signal" r="4"><animateMotion dur="3s" begin="-1.6s" repeatCount="indefinite" path="M70 265 180 305 310 320 440 320"/></circle>
+                <circle class="network-signal" r="3"><animateMotion dur="3.4s" begin="-2.4s" repeatCount="indefinite" path="M70 350 180 385 310 380 440 320"/></circle>
+                <circle class="network-signal" r="3"><animateMotion dur="2.6s" begin="-1.1s" repeatCount="indefinite" path="M70 180 180 220 310 320 440 320"/></circle>
+                <circle class="network-signal" r="3"><animateMotion dur="3.1s" begin="-2s" repeatCount="indefinite" path="M70 350 180 305 310 235 440 210"/></circle>
+              </g>
+              <text class="diagram-label" x="48" y="158">INPUT</text>
+              <text class="diagram-label" x="210" y="124">LEARNED LAYERS</text>
+              <text class="diagram-label" x="419" y="188">OUTPUT</text>
             </svg>
           </div>
           <div class="focus-switcher" role="radiogroup" aria-label="Research perspective">
@@ -114,8 +160,8 @@
             <button class="orbit-label label-hpc" type="button" role="radio" data-focus-option="hpc" aria-checked="false" tabindex="-1" aria-label="Show the high-performance computing perspective">HPC</button>
           </div>
           <div class="focus-caption" aria-live="polite">
-            <span data-focus-kicker>Molecular dynamics</span>
-            <strong data-focus-caption>Following atoms through time.</strong>
+            <span data-focus-kicker>Atomistic simulation</span>
+            <strong data-focus-caption>Resolving molecular structure and motion across interacting time scales.</strong>
           </div>
           <span class="focus-hint" aria-hidden="true">Choose a perspective</span>
         </div>
