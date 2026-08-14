@@ -59,6 +59,67 @@
 
   document.querySelector("[data-year]").textContent = new Date().getFullYear();
 
+  const focusVisual = document.querySelector("[data-research-focus]");
+  const hero = document.querySelector("[data-hero]");
+  const focusButtons = [...document.querySelectorAll("[data-focus-option]")];
+  const focusKicker = document.querySelector("[data-focus-kicker]");
+  const focusCaption = document.querySelector("[data-focus-caption]");
+  const focusContent = {
+    md: {
+      kicker: "Molecular dynamics",
+      caption: "Following atoms through time."
+    },
+    hpc: {
+      kicker: "High-performance computing",
+      caption: "Scaling scientific questions across systems."
+    },
+    ml: {
+      kicker: "Machine learning",
+      caption: "Finding compact structure in complex data."
+    }
+  };
+
+  const applyFocus = (focus) => {
+    focusVisual.dataset.focus = focus;
+    hero.dataset.focus = focus;
+    focusKicker.textContent = focusContent[focus].kicker;
+    focusCaption.textContent = focusContent[focus].caption;
+    focusButtons.forEach((button) => {
+      const active = button.dataset.focusOption === focus;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+  };
+
+  const selectFocus = (focus, immediate = false) => {
+    if (!focusVisual || !focusContent[focus] || focusVisual.dataset.focus === focus) return;
+    if (immediate || reducedMotion.matches) {
+      applyFocus(focus);
+      return;
+    }
+    focusVisual.classList.add("is-switching");
+
+    window.setTimeout(() => {
+      applyFocus(focus);
+      window.setTimeout(() => focusVisual.classList.remove("is-switching"), 90);
+    }, 180);
+  };
+
+  focusButtons.forEach((button, index) => {
+    button.addEventListener("click", () => selectFocus(button.dataset.focusOption));
+    button.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
+      event.preventDefault();
+      const direction = ["ArrowRight", "ArrowDown"].includes(event.key) ? 1 : -1;
+      const next = focusButtons[(index + direction + focusButtons.length) % focusButtons.length];
+      next.focus();
+      selectFocus(next.dataset.focusOption);
+    });
+  });
+
+  const requestedFocus = new URLSearchParams(window.location.search).get("focus");
+  if (focusContent[requestedFocus] && requestedFocus !== "md") selectFocus(requestedFocus, true);
+
   const canvas = document.querySelector("[data-particles]");
   if (!canvas || reducedMotion.matches) return;
 

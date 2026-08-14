@@ -60,7 +60,7 @@
   </header>
 
   <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
+    <section class="hero" id="top" aria-labelledby="hero-title" data-hero data-focus="md">
       <canvas class="particle-field" data-particles aria-hidden="true"></canvas>
       <div class="hero-grid page-shell">
         <div class="hero-copy reveal is-visible">
@@ -90,18 +90,32 @@
           </div>
         </div>
 
-        <div class="hero-visual reveal is-visible" data-delay="120" aria-label="Portrait of Ali Sharifian surrounded by research domains">
-          <div class="orbit orbit-outer"><span></span><span></span><span></span></div>
-          <div class="orbit orbit-inner"><span></span><span></span></div>
-          <div class="portrait-wrap">
-            <img src="assets/ali-sharifian.png" alt="Ali Sharifian" width="600" height="600">
+        <div class="hero-visual reveal is-visible" data-delay="120" data-research-focus data-focus="md" aria-label="Interactive portrait showing molecular dynamics, high-performance computing, and machine learning perspectives">
+          <div class="scene-core">
+            <div class="orbit orbit-outer"><span></span><span></span><span></span></div>
+            <div class="orbit orbit-inner"><span></span><span></span></div>
+            <div class="portrait-wrap">
+              <img src="assets/ali-sharifian.png" alt="Ali Sharifian" width="600" height="600">
+            </div>
+            <svg class="trajectory" viewBox="0 0 530 530" aria-hidden="true">
+              <path d="M50 306C91 121 297 59 434 159c101 74 57 234-58 293-101 52-261 6-297-101-39-115 62-244 183-241 112 3 187 116 149 213-28 73-122 115-190 75-62-36-68-129-19-177 41-40 115-33 144 14"/>
+            </svg>
+            <svg class="perspective-overlay overlay-hpc" viewBox="0 0 530 530" aria-hidden="true">
+              <path d="m110 170 155-76 155 76-155 77-155-77Zm0 0v178l155 88 155-88V170M265 247v189M110 259l155 82 155-82M187 132l155 77v178M343 132l-155 77v178"/>
+            </svg>
+            <svg class="perspective-overlay overlay-ml" viewBox="0 0 530 530" aria-hidden="true">
+              <path d="m104 178 101 62m0 0 98-121m-98 121 31 140m67-261 112 98m-179 163 179-163M104 178l45 218m266-179-29 178m-237 1 87-16m0 0 150 15M303 119l83 276"/>
+              <circle cx="104" cy="178" r="9"/><circle cx="205" cy="240" r="12"/><circle cx="303" cy="119" r="8"/><circle cx="415" cy="217" r="11"/><circle cx="149" cy="396" r="8"/><circle cx="236" cy="380" r="11"/><circle cx="386" cy="395" r="9"/>
+            </svg>
           </div>
-          <span class="orbit-label label-ml">ML</span>
-          <span class="orbit-label label-md">MD</span>
-          <span class="orbit-label label-hpc">HPC</span>
-          <svg class="trajectory" viewBox="0 0 530 530" aria-hidden="true">
-            <path d="M50 306C91 121 297 59 434 159c101 74 57 234-58 293-101 52-261 6-297-101-39-115 62-244 183-241 112 3 187 116 149 213-28 73-122 115-190 75-62-36-68-129-19-177 41-40 115-33 144 14"/>
-          </svg>
+          <button class="orbit-label label-ml" type="button" data-focus-option="ml" aria-pressed="false" aria-label="Show the machine learning perspective">ML</button>
+          <button class="orbit-label label-md is-active" type="button" data-focus-option="md" aria-pressed="true" aria-label="Show the molecular dynamics perspective">MD</button>
+          <button class="orbit-label label-hpc" type="button" data-focus-option="hpc" aria-pressed="false" aria-label="Show the high-performance computing perspective">HPC</button>
+          <div class="focus-caption" aria-live="polite">
+            <span data-focus-kicker>Molecular dynamics</span>
+            <strong data-focus-caption>Following atoms through time.</strong>
+          </div>
+          <span class="focus-hint" aria-hidden="true">Choose a perspective</span>
         </div>
       </div>
       <a class="scroll-cue" href="#about"><span>Explore</span><i></i></a>
