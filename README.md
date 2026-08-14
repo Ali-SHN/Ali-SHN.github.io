@@ -12,7 +12,7 @@ The site will normally appear at `https://ali-shn.github.io/` after GitHub finis
 
 ## Important profile-link note
 
-LinkedIn and GitHub point to Ali's public profiles. The Scholar buttons currently use a precise Google Scholar author search because a public Scholar profile ID could not be verified. If you have the direct profile URL, replace every `https://scholar.google.com/scholar?...` link in `index.html` with it.
+LinkedIn, GitHub, and Google Scholar point directly to Ali's public profiles.
 
 ## Local preview
 
