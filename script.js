@@ -78,6 +78,7 @@
       caption: "Finding compact structure in complex data."
     }
   };
+  let focusSwitchTimer;
 
   const applyFocus = (focus) => {
     focusVisual.dataset.focus = focus;
@@ -87,22 +88,21 @@
     focusButtons.forEach((button) => {
       const active = button.dataset.focusOption === focus;
       button.classList.toggle("is-active", active);
-      button.setAttribute("aria-pressed", String(active));
+      button.setAttribute("aria-checked", String(active));
+      button.tabIndex = active ? 0 : -1;
     });
   };
 
   const selectFocus = (focus, immediate = false) => {
     if (!focusVisual || !focusContent[focus] || focusVisual.dataset.focus === focus) return;
+    window.clearTimeout(focusSwitchTimer);
+    applyFocus(focus);
     if (immediate || reducedMotion.matches) {
-      applyFocus(focus);
+      focusVisual.classList.remove("is-switching");
       return;
     }
     focusVisual.classList.add("is-switching");
-
-    window.setTimeout(() => {
-      applyFocus(focus);
-      window.setTimeout(() => focusVisual.classList.remove("is-switching"), 90);
-    }, 180);
+    focusSwitchTimer = window.setTimeout(() => focusVisual.classList.remove("is-switching"), 260);
   };
 
   focusButtons.forEach((button, index) => {

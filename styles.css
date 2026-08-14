@@ -557,25 +557,33 @@ h1 em,
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.orbit-label {
+.focus-switcher {
   position: absolute;
   z-index: 4;
+  inset: 0;
+  pointer-events: none;
+}
+
+.orbit-label {
+  position: absolute;
+  z-index: 1;
   display: grid;
   place-items: center;
   min-width: 54px;
   height: 54px;
   padding-inline: 11px;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--line);
   border-radius: 50%;
   background: var(--paper);
   appearance: none;
-  color: var(--ink);
+  color: var(--ink-soft);
   font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1;
-  box-shadow: 0 8px 20px color-mix(in srgb, var(--ink) 9%, transparent);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--ink) 7%, transparent);
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  pointer-events: auto;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .label-ml { top: 2%; right: 15%; }
@@ -586,15 +594,32 @@ h1 em,
 .orbit-label:focus-visible {
   transform: scale(1.1);
   outline: none;
-  box-shadow: 0 0 0 5px color-mix(in srgb, var(--focus-color) 22%, transparent), 0 12px 28px color-mix(in srgb, var(--ink) 14%, transparent);
+  border-color: var(--ink);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 10%, transparent), 0 12px 28px color-mix(in srgb, var(--ink) 12%, transparent);
 }
 
-.orbit-label.is-active {
+.orbit-label:not(.is-active),
+.orbit-label[aria-checked="false"] {
+  border-color: var(--line);
+  background: var(--paper);
+  color: var(--ink-soft);
+}
+
+.orbit-label.is-active,
+.orbit-label[aria-checked="true"] {
   transform: scale(1.12);
   border-color: var(--focus-color);
   background: var(--focus-color);
   color: #111411;
   box-shadow: 0 0 0 6px color-mix(in srgb, var(--focus-color) 20%, transparent), 0 14px 34px color-mix(in srgb, var(--focus-color) 22%, transparent);
+}
+
+.orbit-label.is-active:hover,
+.orbit-label.is-active:focus-visible,
+.orbit-label[aria-checked="true"]:hover,
+.orbit-label[aria-checked="true"]:focus-visible {
+  border-color: var(--focus-color);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--focus-color) 24%, transparent), 0 16px 38px color-mix(in srgb, var(--focus-color) 28%, transparent);
 }
 
 .trajectory {

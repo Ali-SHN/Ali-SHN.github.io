@@ -108,9 +108,11 @@
               <circle cx="104" cy="178" r="9"/><circle cx="205" cy="240" r="12"/><circle cx="303" cy="119" r="8"/><circle cx="415" cy="217" r="11"/><circle cx="149" cy="396" r="8"/><circle cx="236" cy="380" r="11"/><circle cx="386" cy="395" r="9"/>
             </svg>
           </div>
-          <button class="orbit-label label-ml" type="button" data-focus-option="ml" aria-pressed="false" aria-label="Show the machine learning perspective">ML</button>
-          <button class="orbit-label label-md is-active" type="button" data-focus-option="md" aria-pressed="true" aria-label="Show the molecular dynamics perspective">MD</button>
-          <button class="orbit-label label-hpc" type="button" data-focus-option="hpc" aria-pressed="false" aria-label="Show the high-performance computing perspective">HPC</button>
+          <div class="focus-switcher" role="radiogroup" aria-label="Research perspective">
+            <button class="orbit-label label-ml" type="button" role="radio" data-focus-option="ml" aria-checked="false" tabindex="-1" aria-label="Show the machine learning perspective">ML</button>
+            <button class="orbit-label label-md is-active" type="button" role="radio" data-focus-option="md" aria-checked="true" tabindex="0" aria-label="Show the molecular dynamics perspective">MD</button>
+            <button class="orbit-label label-hpc" type="button" role="radio" data-focus-option="hpc" aria-checked="false" tabindex="-1" aria-label="Show the high-performance computing perspective">HPC</button>
+          </div>
           <div class="focus-caption" aria-live="polite">
             <span data-focus-kicker>Molecular dynamics</span>
             <strong data-focus-caption>Following atoms through time.</strong>
