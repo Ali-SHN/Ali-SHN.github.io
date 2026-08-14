@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260814-5">
+  <link rel="stylesheet" href="styles.css?v=20260814-6">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -136,30 +136,39 @@
                 </marker>
               </defs>
               <g class="ml-input-routes">
-                <path d="M104 255H145" marker-end="url(#ml-arrow)"/>
-                <path d="M426 255H385" marker-end="url(#ml-arrow)"/>
+                <path d="M104 270H145" marker-end="url(#ml-arrow)"/>
+                <path d="M426 260H386" marker-end="url(#ml-arrow)"/>
               </g>
-              <g class="network-edges">
-                <path d="M145 255 212 232 247 280 235 315 265 320M385 255 318 232 280 280 295 315 265 320"/>
-                <path class="cross-feature" d="M212 232 280 280M318 232 247 280M247 280 280 280M235 315 295 315"/>
-                <path class="ml-output-route" d="M265 320V394" marker-end="url(#ml-arrow)"/>
+              <g class="network-edges nn-layer-links">
+                <path d="M145 270 220 252M145 270 316 249M386 260 220 252M386 260 316 249"/>
+                <path d="M220 252 248 298M220 252 281 298M316 249 248 298M316 249 281 298"/>
+                <path d="M248 298 230 326M248 298 265 327M248 298 296 326M281 298 230 326M281 298 265 327M281 298 296 326"/>
+                <path d="M230 326 265 396M265 327 265 396M296 326 265 396"/>
+              </g>
+              <g class="nn-primary-links">
+                <path d="M145 270 220 252 248 298 230 326 265 396"/>
+                <path d="M386 260 316 249 281 298 296 326 265 396"/>
+                <path class="ml-output-route" d="M265 327V396" marker-end="url(#ml-arrow)"/>
               </g>
               <g class="network-nodes">
-                <circle class="network-node ear-node" cx="145" cy="255" r="8"/><circle class="network-node ear-node" cx="385" cy="255" r="8"/>
-                <circle class="network-node eye-node" cx="212" cy="232" r="8"/><circle class="network-node eye-node" cx="318" cy="232" r="8"/>
-                <circle class="network-node nose-node" cx="247" cy="280" r="6"/><circle class="network-node nose-node" cx="280" cy="280" r="6"/>
-                <circle class="network-node lip-node" cx="235" cy="315" r="6"/><circle class="network-node lip-node" cx="295" cy="315" r="6"/>
-                <circle class="network-node mouth-node" cx="265" cy="320" r="9"/>
+                <circle class="network-node ear-node" cx="145" cy="270" r="7"/><circle class="network-node ear-node" cx="386" cy="260" r="7"/>
+                <circle class="network-node eye-node" cx="220" cy="252" r="7"/><circle class="network-node eye-node" cx="316" cy="249" r="7"/>
+                <circle class="network-node nose-node" cx="248" cy="298" r="5.5"/><circle class="network-node nose-node" cx="281" cy="298" r="5.5"/>
+                <circle class="network-node lip-node" cx="230" cy="326" r="5.5"/><circle class="network-node mouth-node" cx="265" cy="327" r="7"/><circle class="network-node lip-node" cx="296" cy="326" r="5.5"/>
                 <circle class="network-node output-node" cx="265" cy="394" r="7"/>
               </g>
               <g class="network-signals">
-                <circle class="network-signal" r="4"><animateMotion dur="3.2s" repeatCount="indefinite" path="M104 255H145L212 232 247 280 235 315 265 320V394"/></circle>
-                <circle class="network-signal" r="4"><animateMotion dur="3.2s" begin="-1.6s" repeatCount="indefinite" path="M426 255H385L318 232 280 280 295 315 265 320V394"/></circle>
-                <circle class="network-signal secondary-signal" r="3"><animateMotion dur="3.6s" begin="-0.8s" repeatCount="indefinite" path="M145 255 212 232 280 280 295 315 265 320V394"/></circle>
+                <circle class="network-signal" r="4"><animateMotion dur="3.2s" repeatCount="indefinite" path="M104 270H145L220 252 248 298 230 326 265 396"/></circle>
+                <circle class="network-signal" r="4"><animateMotion dur="3.2s" begin="-1.6s" repeatCount="indefinite" path="M426 260H386L316 249 281 298 296 326 265 396"/></circle>
+                <circle class="network-signal secondary-signal" r="3"><animateMotion dur="3.6s" begin="-0.8s" repeatCount="indefinite" path="M145 270 316 249 248 298 265 327 265 396"/></circle>
+                <circle class="network-signal secondary-signal" r="3"><animateMotion dur="3.8s" begin="-2.4s" repeatCount="indefinite" path="M386 260 220 252 281 298 265 327 265 396"/></circle>
               </g>
-              <text class="diagram-label ml-diagram-label" x="80" y="238">INPUT</text>
-              <text class="diagram-label ml-diagram-label" x="402" y="238">INPUT</text>
-              <text class="diagram-label ml-diagram-label feature-label" x="210" y="198">LEARNED LANDMARKS</text>
+              <text class="diagram-label ml-diagram-label" x="77" y="252">INPUT</text>
+              <text class="diagram-label ml-diagram-label" x="403" y="242">INPUT</text>
+              <text class="diagram-label ml-diagram-label feature-label" x="208" y="211">LANDMARK NN</text>
+              <text class="diagram-label ml-diagram-label layer-label" x="333" y="239">L1</text>
+              <text class="diagram-label ml-diagram-label layer-label" x="291" y="294">L2</text>
+              <text class="diagram-label ml-diagram-label layer-label" x="306" y="326">L3</text>
               <text class="diagram-label ml-diagram-label output-label" x="265" y="418">OUTPUT</text>
             </svg>
           </div>
@@ -389,6 +398,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260814-5"></script>
+  <script src="script.js?v=20260814-6"></script>
 </body>
 </html>
