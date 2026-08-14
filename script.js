@@ -70,12 +70,12 @@
       caption: "Resolving molecular structure and motion across interacting time scales."
     },
     hpc: {
-      kicker: "Parallel scientific computing",
-      caption: "Partitioning large simulations into concurrent tasks, communication, and reduction."
+      kicker: "Parallel simulation at scale",
+      caption: "Decomposing large models into concurrent tasks, message passing, and global reduction."
     },
     ml: {
-      kicker: "Representation learning",
-      caption: "Propagating high-dimensional signals through learned layers to expose compact structure."
+      kicker: "Scientific representation learning",
+      caption: "Encoding high-dimensional observations into compact, interpretable latent structure."
     }
   };
   let focusSwitchTimer;
@@ -246,88 +246,6 @@
     context.fillRect(startX + scanColumn * gap - gap / 2, startY, gap, rows * gap);
   };
 
-  const drawLearningField = (ink, time) => {
-    const color = "#a982ff";
-    const compact = width < 760;
-    const left = compact ? width * 0.06 : width * 0.55;
-    const right = width * 0.96;
-    const top = compact ? 85 : height * 0.16;
-    const bottom = height * 0.86;
-    const layerCounts = compact ? [3, 5, 4, 2] : [4, 6, 7, 5, 2];
-    const layers = layerCounts.map((count, layerIndex) => {
-      const x = left + (right - left) * (layerIndex / (layerCounts.length - 1));
-      return Array.from({ length: count }, (_, nodeIndex) => ({
-        x,
-        y: top + (bottom - top) * ((nodeIndex + 1) / (count + 1))
-      }));
-    });
-
-    const edgesByLayer = [];
-    layers.slice(0, -1).forEach((layer, layerIndex) => {
-      const nextLayer = layers[layerIndex + 1];
-      const layerEdges = [];
-      layer.forEach((node, nodeIndex) => {
-        nextLayer.forEach((next, nextIndex) => {
-          const keepEdge = (nodeIndex * 3 + nextIndex * 2 + layerIndex) % 4 !== 0 || nextIndex === nodeIndex % nextLayer.length;
-          if (!keepEdge) return;
-          const edge = { from: node, to: next };
-          layerEdges.push(edge);
-          context.strokeStyle = ink;
-          context.globalAlpha = 0.055;
-          context.lineWidth = 0.55;
-          context.beginPath();
-          context.moveTo(node.x, node.y);
-          context.lineTo(next.x, next.y);
-          context.stroke();
-        });
-      });
-      edgesByLayer.push(layerEdges);
-    });
-
-    const signalCount = compact ? 8 : 16;
-    for (let signalIndex = 0; signalIndex < signalCount; signalIndex += 1) {
-      const wave = (time * 0.00055 + signalIndex * 0.37) % edgesByLayer.length;
-      const stage = Math.floor(wave);
-      const progress = wave - stage;
-      const layerEdges = edgesByLayer[stage];
-      const edge = layerEdges[(signalIndex * 7 + stage * 3) % layerEdges.length];
-      const x = edge.from.x + (edge.to.x - edge.from.x) * progress;
-      const y = edge.from.y + (edge.to.y - edge.from.y) * progress;
-      const tailProgress = Math.max(0, progress - 0.08);
-      const tailX = edge.from.x + (edge.to.x - edge.from.x) * tailProgress;
-      const tailY = edge.from.y + (edge.to.y - edge.from.y) * tailProgress;
-
-      context.strokeStyle = color;
-      context.globalAlpha = 0.24;
-      context.lineWidth = 1.2;
-      context.beginPath();
-      context.moveTo(tailX, tailY);
-      context.lineTo(x, y);
-      context.stroke();
-
-      context.fillStyle = color;
-      context.globalAlpha = 0.82;
-      context.beginPath();
-      context.arc(x, y, signalIndex % 3 === 0 ? 2.2 : 1.5, 0, Math.PI * 2);
-      context.fill();
-    }
-
-    const activeLayer = Math.floor((time * 0.00055) % layers.length);
-    layers.forEach((layer, layerIndex) => {
-      layer.forEach((node, nodeIndex) => {
-        const active = layerIndex === activeLayer && nodeIndex % 2 === activeLayer % 2;
-        context.save();
-        context.translate(node.x, node.y);
-        context.rotate(Math.PI / 4);
-        context.fillStyle = active ? color : ink;
-        context.globalAlpha = active ? 0.78 : 0.2;
-        const size = active ? 7 : 4.5;
-        context.fillRect(-size / 2, -size / 2, size, size);
-        context.restore();
-      });
-    });
-  };
-
   const draw = (timestamp = performance.now()) => {
     context.clearRect(0, 0, width, height);
     const ink = cssColor("--ink");
@@ -335,8 +253,7 @@
     const mode = hero?.dataset.focus || "md";
 
     if (mode === "hpc") drawComputeField(ink, timestamp);
-    else if (mode === "ml") drawLearningField(ink, timestamp);
-    else drawMolecularField(ink, accent);
+    else if (mode === "md") drawMolecularField(ink, accent);
 
     context.globalAlpha = 1;
     frame = requestAnimationFrame(draw);

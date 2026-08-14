@@ -735,6 +735,15 @@ h1 em,
   stroke-width: 0.9;
 }
 
+.overlay-ml {
+  z-index: 1;
+}
+
+.latent-loop {
+  stroke-dasharray: 3 7;
+  opacity: 0.62;
+}
+
 .network-node {
   fill: var(--paper);
   stroke: var(--focus-color);
@@ -746,6 +755,11 @@ h1 em,
 
 .network-node:nth-child(3n + 2) { animation-delay: -1s; }
 .network-node:nth-child(3n) { animation-delay: -2s; }
+
+.latent-node {
+  fill: color-mix(in srgb, var(--focus-color) 28%, var(--paper));
+  stroke-width: 2.2;
+}
 
 .network-signal {
   fill: var(--focus-color);

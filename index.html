@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260814-3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -131,27 +131,25 @@
             </svg>
             <svg class="perspective-overlay overlay-ml" viewBox="0 0 530 530" aria-hidden="true">
               <g class="network-edges">
-                <path d="M70 180 180 145M70 180 180 220M70 265 180 145M70 265 180 220M70 265 180 305M70 265 180 385M70 350 180 305M70 350 180 385"/>
-                <path d="M180 145 310 150M180 145 310 235M180 220 310 150M180 220 310 320M180 305 310 235M180 305 310 320M180 305 310 380M180 385 310 320M180 385 310 380"/>
-                <path d="M310 150 440 210M310 235 440 210M310 235 440 320M310 320 440 210M310 320 440 320M310 380 440 320"/>
+                <path d="M55 190 120 145 265 75 410 145 475 220M55 265 120 220 265 145 410 220 475 220M55 265 120 310 265 375 410 310 475 310M55 340 120 385 265 455 410 385 475 310"/>
+                <path class="latent-loop" d="M120 145C190 108 340 108 410 145M120 385C190 422 340 422 410 385"/>
               </g>
               <g class="network-nodes">
-                <circle class="network-node" cx="70" cy="180" r="7"/><circle class="network-node" cx="70" cy="265" r="7"/><circle class="network-node" cx="70" cy="350" r="7"/>
-                <circle class="network-node" cx="180" cy="145" r="7"/><circle class="network-node" cx="180" cy="220" r="7"/><circle class="network-node" cx="180" cy="305" r="7"/><circle class="network-node" cx="180" cy="385" r="7"/>
-                <circle class="network-node" cx="310" cy="150" r="7"/><circle class="network-node" cx="310" cy="235" r="7"/><circle class="network-node" cx="310" cy="320" r="7"/><circle class="network-node" cx="310" cy="380" r="7"/>
-                <circle class="network-node" cx="440" cy="210" r="8"/><circle class="network-node" cx="440" cy="320" r="8"/>
+                <circle class="network-node" cx="55" cy="190" r="7"/><circle class="network-node" cx="55" cy="265" r="7"/><circle class="network-node" cx="55" cy="340" r="7"/>
+                <circle class="network-node" cx="120" cy="145" r="7"/><circle class="network-node" cx="120" cy="220" r="7"/><circle class="network-node" cx="120" cy="310" r="7"/><circle class="network-node" cx="120" cy="385" r="7"/>
+                <circle class="network-node latent-node" cx="265" cy="75" r="8"/><circle class="network-node latent-node" cx="265" cy="455" r="8"/>
+                <circle class="network-node" cx="410" cy="145" r="7"/><circle class="network-node" cx="410" cy="220" r="7"/><circle class="network-node" cx="410" cy="310" r="7"/><circle class="network-node" cx="410" cy="385" r="7"/>
+                <circle class="network-node" cx="475" cy="220" r="8"/><circle class="network-node" cx="475" cy="310" r="8"/>
               </g>
               <g class="network-signals">
-                <circle class="network-signal" r="4"><animateMotion dur="2.8s" repeatCount="indefinite" path="M70 180 180 145 310 235 440 210"/></circle>
-                <circle class="network-signal" r="3"><animateMotion dur="3.2s" begin="-0.8s" repeatCount="indefinite" path="M70 265 180 220 310 150 440 210"/></circle>
-                <circle class="network-signal" r="4"><animateMotion dur="3s" begin="-1.6s" repeatCount="indefinite" path="M70 265 180 305 310 320 440 320"/></circle>
-                <circle class="network-signal" r="3"><animateMotion dur="3.4s" begin="-2.4s" repeatCount="indefinite" path="M70 350 180 385 310 380 440 320"/></circle>
-                <circle class="network-signal" r="3"><animateMotion dur="2.6s" begin="-1.1s" repeatCount="indefinite" path="M70 180 180 220 310 320 440 320"/></circle>
-                <circle class="network-signal" r="3"><animateMotion dur="3.1s" begin="-2s" repeatCount="indefinite" path="M70 350 180 305 310 235 440 210"/></circle>
+                <circle class="network-signal" r="4"><animateMotion dur="3.4s" repeatCount="indefinite" path="M55 190 120 145 265 75 410 145 475 220"/></circle>
+                <circle class="network-signal" r="3"><animateMotion dur="3.8s" begin="-1.2s" repeatCount="indefinite" path="M55 265 120 220 265 145 410 220 475 220"/></circle>
+                <circle class="network-signal" r="4"><animateMotion dur="3.6s" begin="-2.4s" repeatCount="indefinite" path="M55 265 120 310 265 375 410 310 475 310"/></circle>
+                <circle class="network-signal" r="3"><animateMotion dur="4s" begin="-3s" repeatCount="indefinite" path="M55 340 120 385 265 455 410 385 475 310"/></circle>
               </g>
-              <text class="diagram-label" x="48" y="158">INPUT</text>
-              <text class="diagram-label" x="210" y="124">LEARNED LAYERS</text>
-              <text class="diagram-label" x="419" y="188">OUTPUT</text>
+              <text class="diagram-label" x="34" y="168">INPUT</text>
+              <text class="diagram-label" x="211" y="57">LATENT SPACE</text>
+              <text class="diagram-label" x="446" y="198">OUTPUT</text>
             </svg>
           </div>
           <div class="focus-switcher" role="radiogroup" aria-label="Research perspective">
@@ -380,6 +378,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260814-3"></script>
 </body>
 </html>
