@@ -740,16 +740,10 @@ h1 em,
   filter: drop-shadow(0 1px 5px color-mix(in srgb, var(--ink) 48%, transparent));
 }
 
-.ml-layer-panels rect {
-  fill: color-mix(in srgb, var(--paper) 22%, transparent);
-  stroke: color-mix(in srgb, var(--focus-color) 72%, white);
-  stroke-width: 1;
-  stroke-dasharray: 3 4;
-}
-
-.ml-layer-panels .latent-panel {
-  fill: color-mix(in srgb, var(--focus-color) 16%, transparent);
-  stroke-width: 1.5;
+.ml-input-routes {
+  stroke: color-mix(in srgb, var(--focus-color) 88%, white);
+  stroke-width: 1.8;
+  stroke-dasharray: 4 4;
 }
 
 .network-node {
@@ -764,15 +758,41 @@ h1 em,
 .network-node:nth-child(3n + 2) { animation-delay: -1s; }
 .network-node:nth-child(3n) { animation-delay: -2s; }
 
-.latent-node {
-  fill: color-mix(in srgb, var(--focus-color) 72%, var(--paper));
-  stroke: var(--paper);
-  stroke-width: 2.5;
+.cross-feature {
+  stroke-dasharray: 3 5;
+  opacity: 0.62;
 }
 
-.input-node,
+.ml-output-route {
+  stroke: color-mix(in srgb, var(--focus-color) 88%, white);
+  stroke-width: 1.8;
+}
+
+.ear-node {
+  fill: color-mix(in srgb, var(--focus-color) 56%, var(--paper));
+  stroke-width: 2.2;
+}
+
+.eye-node {
+  fill: color-mix(in srgb, var(--paper) 82%, transparent);
+  stroke-width: 2.3;
+}
+
+.nose-node,
+.lip-node {
+  fill: color-mix(in srgb, var(--focus-color) 28%, var(--paper));
+}
+
+.mouth-node {
+  fill: color-mix(in srgb, var(--focus-color) 72%, var(--paper));
+  stroke: var(--paper);
+  stroke-width: 2.4;
+}
+
 .output-node {
-  fill: color-mix(in srgb, var(--paper) 78%, transparent);
+  fill: var(--focus-color);
+  stroke: var(--paper);
+  stroke-width: 2;
 }
 
 .ml-diagram-label {
@@ -782,9 +802,16 @@ h1 em,
   stroke-linejoin: round;
 }
 
-.latent-label {
-  font-size: 11px;
-  text-transform: none;
+.feature-label {
+  letter-spacing: 0.12em;
+}
+
+.output-label {
+  text-anchor: middle;
+}
+
+.secondary-signal {
+  opacity: 0.72;
 }
 
 .network-signal {
