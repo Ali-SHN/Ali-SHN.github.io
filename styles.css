@@ -736,12 +736,20 @@ h1 em,
 }
 
 .overlay-ml {
-  z-index: 1;
+  z-index: 4;
+  filter: drop-shadow(0 1px 5px color-mix(in srgb, var(--ink) 48%, transparent));
 }
 
-.latent-loop {
-  stroke-dasharray: 3 7;
-  opacity: 0.62;
+.ml-layer-panels rect {
+  fill: color-mix(in srgb, var(--paper) 22%, transparent);
+  stroke: color-mix(in srgb, var(--focus-color) 72%, white);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.ml-layer-panels .latent-panel {
+  fill: color-mix(in srgb, var(--focus-color) 16%, transparent);
+  stroke-width: 1.5;
 }
 
 .network-node {
@@ -757,8 +765,26 @@ h1 em,
 .network-node:nth-child(3n) { animation-delay: -2s; }
 
 .latent-node {
-  fill: color-mix(in srgb, var(--focus-color) 28%, var(--paper));
-  stroke-width: 2.2;
+  fill: color-mix(in srgb, var(--focus-color) 72%, var(--paper));
+  stroke: var(--paper);
+  stroke-width: 2.5;
+}
+
+.input-node,
+.output-node {
+  fill: color-mix(in srgb, var(--paper) 78%, transparent);
+}
+
+.ml-diagram-label {
+  paint-order: stroke;
+  stroke: color-mix(in srgb, var(--ink) 72%, transparent);
+  stroke-width: 2.6px;
+  stroke-linejoin: round;
+}
+
+.latent-label {
+  font-size: 11px;
+  text-transform: none;
 }
 
 .network-signal {
